@@ -1,0 +1,50 @@
+{
+  "name": "@octoherd/octokit",
+  "publishConfig": {
+    "access": "public"
+  },
+  "version": "0.0.0-development",
+  "description": "Customized Octokit for Octoherd",
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": ">12"
+  },
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "octoherd",
+    "octokit"
+  ],
+  "author": "Gregor Martynus (https://twitter.com/gr2m)",
+  "license": "ISC",
+  "repository": "https://github.com/octoherd/octokit",
+  "dependencies": {
+    "@octokit/core": "^3.2.5",
+    "@octokit/plugin-paginate-rest": "^2.9.1",
+    "@octokit/plugin-retry": "^3.0.7",
+    "@octokit/plugin-throttling": "^3.4.1",
+    "pino": "^6.11.1"
+  },
+  "devDependencies": {
+    "semantic-release": "^17.3.9",
+    "semantic-release-plugin-update-version-in-files": "^1.1.0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      [
+        "semantic-release-plugin-update-version-in-files",
+        {
+          "files": [
+            "version.js"
+          ]
+        }
+      ]
+    ]
+  }
+}
