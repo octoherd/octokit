@@ -4,10 +4,12 @@ import { throttling } from "@octokit/plugin-throttling";
 import { retry } from "@octokit/plugin-retry";
 import pino from "pino";
 
+import { loggerPlugin } from "./octokit-plugins/logger.js";
 import { VERSION } from "./version.js";
 
 const logger = pino();
 export const Octokit = OctokitCore.plugin(
+  loggerPlugin,
   paginateRest,
   throttling,
   retry
