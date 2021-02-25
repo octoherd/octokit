@@ -13,6 +13,12 @@ function log(level, callbacks, ...args) {
     obj.msg = msg;
   }
 
+  // handle errors
+  if (obj.message && !obj.msg) {
+    obj.msg = obj.message;
+    delete obj.message;
+  }
+
   if (obj.msg) {
     const { msg: message, ...data } = obj;
     callbacks.onLogMessage(level, message, data);
