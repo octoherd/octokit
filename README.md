@@ -63,9 +63,11 @@ By default you authenticate using a token, but you can use any [authentication s
 
 ### Logging
 
-The logging methods `octokit.log.{debug,info,warn,error}()` use [`pino`](https://getpino.io/#/). Log lines are newline delimited JSON ([NDJSON](https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON)) by default.
+By default, messages are logged with meta data using `console.info`, `console.warn`, and `console.error`. `octokit.log.debug` is a no-op, unless `options.octoherd.debug` is set to `true`.
 
-You can log simple messages
+**Important**: `options.log` is ignored. Setting it has no effect.
+
+You can log simple messages, interpolation is supported.
 
 ```js
 octokit.log.info("Checking repository %s", repository.full_name);
@@ -92,11 +94,28 @@ octokit.log.info({
 });
 ```
 
-You can pass a custom `pino` instance as construction option:
+The way data is logged can be customized using `options.octoherd.onLogMessage` and `options.octoherd.onLogData`.
 
 ```js
 const octokit = new Octokit({
-  logger: pino({ level: "debug" }),
+  octoherd: {
+    onLogData(data) {
+      // e.g. write data as JSON line to debug log file
+      // data always has `.level`, and `.time` properties. `.msg` is set from the log message if set.
+    },
+    onLogMessage(level, message, additionalData) {
+      // level is one of: debug, info, warn, error.
+      // message is the log message
+      // additionalData is any data that was passed as first argument to the log methods. It defaults to {}
+      console.log(
+        `[%s]`,
+        level.toUpperCase(),
+        Object.keys(additionalData).length
+          ? `${message} ${chalk.gray(JSON.stringify(additionalData))}`
+          : message
+      );
+    },
+  },
 });
 ```
 
