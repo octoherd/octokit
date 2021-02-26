@@ -5,7 +5,7 @@ function onLogMessage(level, msg, data) {
   console[level](msg, data);
 }
 
-function log(level, callbacks, ...args) {
+function log(options, level, callbacks, ...args) {
   const obj = typeof args[0] === "object" ? args.shift() : {};
   const msg = args.length >= 2 ? format(args.shift(), args) : args[0];
 
@@ -19,7 +19,7 @@ function log(level, callbacks, ...args) {
     delete obj.message;
   }
 
-  if (obj.msg) {
+  if (obj.msg && (level !== "debug" || options.debug)) {
     const { msg: message, ...data } = obj;
     callbacks.onLogMessage(level, message, data);
   }
@@ -34,9 +34,9 @@ export function logger(octokit, { octoherd = {} }) {
   };
 
   octokit.log = {
-    debug: octoherd.debug ? log.bind(null, "debug", callbacks) : () => {},
-    info: log.bind(null, "info", callbacks),
-    warn: log.bind(null, "warn", callbacks),
-    error: log.bind(null, "error", callbacks),
+    debug: log.bind(null, octoherd, "debug", callbacks),
+    info: log.bind(null, octoherd, "info", callbacks),
+    warn: log.bind(null, octoherd, "warn", callbacks),
+    error: log.bind(null, octoherd, "error", callbacks),
   };
 }
