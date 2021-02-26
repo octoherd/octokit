@@ -6,6 +6,21 @@
 // The code is based on the generated type definitions from @octokit/rest:
 // https://unpkg.com/browse/@octokit/rest/dist-types/index.d.ts
 import { Octokit as Core } from "@octokit/core";
+
+interface octoherdLog {
+  (
+    meta: Record<string, unknown>,
+    message?: string,
+    ...interpolations: string[]
+  ): void;
+
+  (message: string, ...interpolations: string[]): void;
+}
+
+interface octoherdLogSetContext {
+  (meta: Record<string, unknown>): void;
+}
+
 export declare const Octokit: (new (...args: any[]) => {
   [x: string]: any;
 }) & {
@@ -17,6 +32,14 @@ export declare const Octokit: (new (...args: any[]) => {
   import("@octokit/core/dist-types/types").Constructor<
     void & {
       paginate: import("@octokit/plugin-paginate-rest").PaginateInterface;
+    } & {
+      log: {
+        debug: octoherdLog;
+        info: octoherdLog;
+        warn: octoherdLog;
+        error: octoherdLog;
+        setContext: octoherdLogSetContext;
+      };
     }
   >;
 export declare type Octokit = InstanceType<typeof Octokit>;

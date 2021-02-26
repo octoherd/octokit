@@ -34,15 +34,20 @@ octokit.log.info("info with %s", "interpolation");
 octokit.log.info({ meta: "data" }, "info");
 octokit.log.info({ meta: "data" }, "info with %s", "interpolation");
 
+octokit.log.setContext({ foo: "bar" });
+octokit.log.warn("warn");
+
 assert.deepEqual(logMessageCalls, [
   ["info", "info", {}],
   ["info", "info with interpolation", {}],
   ["info", "info", { meta: "data" }],
   ["info", "info with interpolation", { meta: "data" }],
+  ["warn", "warn"],
 ]);
 assert.deepEqual(
   logDataCalls.map(([data]) => [{ ...data, time: 0 }]),
   [
+    [{ msg: "debug", level: "debug", time: 0 }],
     [{ msg: "info", level: "info", time: 0 }],
     [
       {
@@ -60,6 +65,7 @@ assert.deepEqual(
         time: 0,
       },
     ],
+    [{ foo: "bar", msg: "warn", level: "warn", time: 0 }],
   ]
 );
 

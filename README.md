@@ -119,6 +119,15 @@ const octokit = new Octokit({
 });
 ```
 
+Additional context can be changed at runtime using `octokit.log.setContext(context)`. The additional context is only passed to `options.octoherd.onLogData`
+
+```js
+octokit.log.setContext({ repo_id: 123 });
+octokit.log.info("test");
+// data passed to `onLogData` will be { repo_id: 123, msg: "test", level: "info", time: 0 }
+// additionalData passed to `onLogMessage` will not have the `.repo_id` property
+```
+
 ### Built-in plugins
 
 `@octoherd/octokit` comes with a few plugins out of the box:
@@ -138,3 +147,7 @@ You can extend `@octoherd/octokit` with [hooks](https://github.com/octokit/core.
 ## License
 
 [ISC](LICENSE.md)
+
+```
+
+```
