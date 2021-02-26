@@ -5,6 +5,7 @@ import { retry } from "@octokit/plugin-retry";
 
 import { logger } from "./octokit-plugins/logger.js";
 import { VERSION } from "./version.js";
+export { VERSION } from "./version.js";
 
 export const Octokit = OctokitCore.plugin(
   logger,
