@@ -20,3 +20,5 @@ export declare const Octokit: (new (...args: any[]) => {
     }
   >;
 export declare type Octokit = InstanceType<typeof Octokit>;
+
+export declare type VERSION = string;
