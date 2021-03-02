@@ -28,44 +28,44 @@ const issues = await octokit.paginate("GET /repos/{owner}/{repo}/issues", {
 
 assert.equal(issues[0].id, 123);
 
-octokit.log.debug("debug");
-octokit.log.info("info");
-octokit.log.info("info with %s", "interpolation");
-octokit.log.info({ meta: "data" }, "info");
-octokit.log.info({ meta: "data" }, "info with %s", "interpolation");
+octokit.log.debug("debug message");
+octokit.log.info("info message");
+octokit.log.info("info message with %s", "interpolation");
+octokit.log.info({ meta: "data" }, "info message");
+octokit.log.info({ meta: "data" }, "info message with %s", "interpolation");
 
 octokit.log.setContext({ foo: "bar" });
-octokit.log.warn("warn");
+octokit.log.warn("warn message");
 
 assert.deepEqual(logMessageCalls, [
-  ["info", "info", {}],
-  ["info", "info with interpolation", {}],
-  ["info", "info", { meta: "data" }],
-  ["info", "info with interpolation", { meta: "data" }],
-  ["warn", "warn"],
+  ["info", "info message", {}],
+  ["info", "info message with interpolation", {}],
+  ["info", "info message", { meta: "data" }],
+  ["info", "info message with interpolation", { meta: "data" }],
+  ["warn", "warn message", {}],
 ]);
 assert.deepEqual(
   logDataCalls.map(([data]) => [{ ...data, time: 0 }]),
   [
-    [{ msg: "debug", level: "debug", time: 0 }],
-    [{ msg: "info", level: "info", time: 0 }],
+    [{ msg: "debug message", level: "debug", time: 0 }],
+    [{ msg: "info message", level: "info", time: 0 }],
     [
       {
-        msg: "info with interpolation",
+        msg: "info message with interpolation",
         level: "info",
         time: 0,
       },
     ],
-    [{ meta: "data", msg: "info", level: "info", time: 0 }],
+    [{ meta: "data", msg: "info message", level: "info", time: 0 }],
     [
       {
         meta: "data",
-        msg: "info with interpolation",
+        msg: "info message with interpolation",
         level: "info",
         time: 0,
       },
     ],
-    [{ foo: "bar", msg: "warn", level: "warn", time: 0 }],
+    [{ foo: "bar", msg: "warn message", level: "warn", time: 0 }],
   ]
 );
 
