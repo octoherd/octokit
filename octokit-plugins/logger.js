@@ -6,7 +6,7 @@ function onLogMessage(level, msg, data) {
 }
 
 function log(state, level, ...args) {
-  const obj = typeof args[0] === "object" ? args.shift() : {};
+  let obj = typeof args[0] === "object" ? args.shift() : {};
   const msg = args.length >= 2 ? format(args.shift(), args) : args[0];
 
   if (typeof msg !== "undefined") {
@@ -14,9 +14,13 @@ function log(state, level, ...args) {
   }
 
   // handle errors
-  if (obj.message && !obj.msg) {
-    obj.msg = obj.message;
-    delete obj.message;
+  if (obj instanceof Error) {
+    obj = {
+      msg: obj.stack,
+      ...Object.entries(obj).reduce((result, [key, value]) => {
+        return { ...result, [key]: value };
+      }, {}),
+    };
   }
 
   if (obj.msg && (level !== "debug" || state.options.debug)) {
