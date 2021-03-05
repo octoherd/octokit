@@ -20,7 +20,7 @@
   ],
   "author": "Gregor Martynus (https://twitter.com/gr2m)",
   "license": "ISC",
-  "repository": "https://github.com/octoherd/octokit",
+  "repository": "github:octoherd/octokit",
   "dependencies": {
     "@octokit/core": "^3.2.5",
     "@octokit/plugin-paginate-rest": "^2.9.1",
