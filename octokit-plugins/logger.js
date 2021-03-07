@@ -25,7 +25,7 @@ function log(state, level, ...args) {
 
   if (obj.msg && (level !== "debug" || state.options.debug)) {
     const { msg: message, ...data } = obj;
-    state.onLogMessage(level, message, data);
+    state.onLogMessage(level, message, { ...state.context, ...data });
   }
 
   state.onLogData({ ...state.context, ...obj, level, time: Date.now() });
