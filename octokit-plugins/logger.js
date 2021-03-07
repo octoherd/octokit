@@ -45,6 +45,7 @@ export function logger(octokit, { octoherd = {} }) {
       info: log.bind(null, state, "info"),
       warn: log.bind(null, state, "warn"),
       error: log.bind(null, state, "error"),
+      // Adds extra info ONLY to log files but not to stdout
       setContext(context) {
         state.context = context;
       },
