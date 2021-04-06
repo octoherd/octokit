@@ -147,7 +147,3 @@ You can extend `@octoherd/octokit` with [hooks](https://github.com/octokit/core.
 ## License
 
 [ISC](LICENSE.md)
-
-```
-
-```
