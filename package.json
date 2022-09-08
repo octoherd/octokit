@@ -9,7 +9,7 @@
   "exports": "./index.js",
   "types": "./index.d.ts",
   "engines": {
-    "node": ">12"
+    "node": ">= 14"
   },
   "scripts": {
     "test": "node test.js"
@@ -22,7 +22,7 @@
   "license": "ISC",
   "repository": "github:octoherd/octokit",
   "dependencies": {
-    "@octokit/core": "^3.2.5",
+    "@octokit/core": "^4.0.0",
     "@octokit/plugin-paginate-rest": "^2.9.1",
     "@octokit/plugin-retry": "^3.0.7",
     "@octokit/plugin-throttling": "^3.4.1",
