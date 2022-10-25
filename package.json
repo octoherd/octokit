@@ -24,7 +24,7 @@
   "dependencies": {
     "@octokit/core": "^4.0.0",
     "@octokit/plugin-paginate-rest": "^5.0.0",
-    "@octokit/plugin-retry": "^3.0.7",
+    "@octokit/plugin-retry": "^4.0.0",
     "@octokit/plugin-throttling": "^4.0.0",
     "quick-format-unescaped": "^4.0.1"
   },
