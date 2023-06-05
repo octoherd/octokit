@@ -15,11 +15,15 @@ export const Octokit = OctokitCore.plugin(
 ).defaults({
   userAgent: `octoherd-cli/${VERSION}`,
   throttle: {
-    onAbuseLimit: (error, options, octokit) => {
-      octokit.log.error("onAbuseLimit", error, options);
+    onSecondaryRateLimit: (error, options, octokit, retryCount) => {
+      octokit.log.error("onSecondaryRateLimit", error, options);
+
+      return retryCount < 3;
     },
-    onRateLimit: (error, options, octokit) => {
+    onRateLimit: (error, options, octokit, retryCount) => {
       octokit.log.error("onRateLimit", error, options);
+
+      return retryCount < 3;
     },
   },
 });
