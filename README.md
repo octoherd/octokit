@@ -59,7 +59,7 @@ By default you authenticate using a token, but you can use any [authentication s
 
 ### REST API requests and GraphQL queries
 
-`@ocotkit/octokit` is built on [`@octokit/core`](https://github.com/octokit/core.js#readme). You can send requests to GitHub's REST API using [`octokit.request`](https://github.com/octokit/core.js#rest-api-example) and GraphQL queries [`octokit.graphql`](https://github.com/octokit/core.js#graphql-example).
+`@octokit/octokit` is built on [`@octokit/core`](https://github.com/octokit/core.js#readme). You can send requests to GitHub's REST API using [`octokit.request`](https://github.com/octokit/core.js#rest-api-example) and GraphQL queries [`octokit.graphql`](https://github.com/octokit/core.js#graphql-example).
 
 ### Logging
 
