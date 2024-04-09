@@ -29,7 +29,7 @@ export declare const Octokit: (new (...args: any[]) => {
   };
   plugins: any[];
 } & typeof Core &
-  import("@octokit/core/dist-types/types").Constructor<
+  import("@octokit/core/types").Constructor<
     void & {
       paginate: import("@octokit/plugin-paginate-rest").PaginateInterface;
     } & {
