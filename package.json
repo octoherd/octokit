@@ -1,7 +1,8 @@
 {
   "name": "@octoherd/octokit",
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenance": true
   },
   "version": "0.0.0-development",
   "description": "Customized Octokit for Octoherd",
